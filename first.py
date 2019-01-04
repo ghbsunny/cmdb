@@ -1,6 +1,15 @@
 class Dispatcher:
 
-    def reg(self):
-        pass
+    def reg(self,cmd,fn):
+        setattr(Dispatcher,cmd,fn)
     def run(self):
-        pass
+        while True:
+            cmd = input('>>>').strip()
+            if cmd == "quit":
+                break
+            getattr(self,cmd,self.defaultfn)
+    def defaultfn(self):
+        print("unknown command")
+if __name__ == '__main__':
+    d = Dispatcher()
+    d.run()
